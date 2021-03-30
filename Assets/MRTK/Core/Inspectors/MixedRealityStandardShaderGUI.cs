@@ -7,6 +7,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Object = UnityEngine.Object;
 
 namespace Microsoft.MixedReality.Toolkit.Editor
 {
@@ -28,13 +29,17 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             public static string renderingOptionsTitle = "Rendering Options";
             public static string advancedOptionsTitle = "Advanced Options";
             public static string fluentOptionsTitle = "Fluent Options";
-            public static string stencilComparisonName = "_StencilComparison";
-            public static string stencilOperationName = "_StencilOperation";
+            public static string instancedColorName = "_InstancedColor";
+            public static string instancedColorFeatureName = "_INSTANCED_COLOR";
+            public static string useUIAlphaClipFeatureName = "_USE_UI_ALPHA_CLIP";
+            public static string stencilComparisonName = "_StencilComp";
+            public static string stencilOperationName = "_StencilOp";
             public static string disableAlbedoMapName = "_DISABLE_ALBEDO_MAP";
             public static string albedoMapAlphaMetallicName = "_METALLIC_TEXTURE_ALBEDO_CHANNEL_A";
             public static string albedoMapAlphaSmoothnessName = "_SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A";
             public static string propertiesComponentHelp = "Use the {0} component(s) to control {1} properties.";
             public static readonly string[] albedoAlphaModeNames = Enum.GetNames(typeof(AlbedoAlphaMode));
+            public static GUIContent instancedColor = new GUIContent("Instanced Color", "Enable a Unique Color Per Instance");
             public static GUIContent albedo = new GUIContent("Albedo", "Albedo (RGB) and Transparency (Alpha)");
             public static GUIContent albedoAssignedAtRuntime = new GUIContent("Assigned at Runtime", "As an optimization albedo operations are disabled when no albedo texture is specified. If a albedo texture will be specified at runtime enable this option.");
             public static GUIContent alphaCutoff = new GUIContent("Alpha Cutoff", "Threshold for Alpha Cutoff");
@@ -48,8 +53,6 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             public static GUIContent enableEmission = new GUIContent("Emission", "Enable Emission");
             public static GUIContent emissiveColor = new GUIContent("Color");
             public static GUIContent enableTriplanarMapping = new GUIContent("Triplanar Mapping", "Enable Triplanar Mapping, a technique which programmatically generates UV coordinates");
-            public static GUIContent enableSSAA = new GUIContent("Super Sample Anti-Aliasing", "Enable Super Sample Anti-Aliasing, a technique improves texture clarity at long distances");
-            public static GUIContent mipmapBias = new GUIContent("Mipmap Bias", "Degree to bias the mip map. A larger negative value reduces aliasing and improves clarity, but may decrease performance");
             public static GUIContent enableLocalSpaceTriplanarMapping = new GUIContent("Local Space", "If True Triplanar Mapping is Calculated in Local Space");
             public static GUIContent triplanarMappingBlendSharpness = new GUIContent("Blend Sharpness", "The Power of the Blend with the Normal");
             public static GUIContent directionalLight = new GUIContent("Directional Light", "Affected by One Unity Directional Light");
@@ -117,8 +120,11 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             public static GUIContent stencilComparison = new GUIContent("Stencil Comparison", "Function to Compare the Reference Value to");
             public static GUIContent stencilOperation = new GUIContent("Stencil Operation", "What to do When the Stencil Test Passes");
             public static GUIContent ignoreZScale = new GUIContent("Ignore Z Scale", "For Features That Use Object Scale (Round Corners, Border Light, etc.), Ignore the Z Scale of the Object");
+            public static GUIContent useAlphaGUIClipping = new GUIContent("Use Alpha GUI Clipping", "Enable Alpha GUI Clipping");
+
         }
 
+        protected MaterialProperty instancedColor;
         protected MaterialProperty albedoMap;
         protected MaterialProperty albedoColor;
         protected MaterialProperty albedoAlphaMode;
@@ -132,8 +138,6 @@ namespace Microsoft.MixedReality.Toolkit.Editor
         protected MaterialProperty enableEmission;
         protected MaterialProperty emissiveColor;
         protected MaterialProperty enableTriplanarMapping;
-        protected MaterialProperty enableSSAA;
-        protected MaterialProperty mipmapBias;
         protected MaterialProperty enableLocalSpaceTriplanarMapping;
         protected MaterialProperty triplanarMappingBlendSharpness;
         protected MaterialProperty metallic;
@@ -203,11 +207,13 @@ namespace Microsoft.MixedReality.Toolkit.Editor
         protected MaterialProperty stencilComparison;
         protected MaterialProperty stencilOperation;
         protected MaterialProperty ignoreZScale;
+        protected MaterialProperty useUIAlphaClipping;
 
         protected override void FindProperties(MaterialProperty[] props)
         {
             base.FindProperties(props);
 
+            instancedColor = FindProperty(Styles.instancedColorName, props);
             albedoMap = FindProperty("_MainTex", props);
             albedoColor = FindProperty("_Color", props);
             albedoAlphaMode = FindProperty("_AlbedoAlphaMode", props);
@@ -223,8 +229,6 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             enableEmission = FindProperty("_EnableEmission", props);
             emissiveColor = FindProperty("_EmissiveColor", props);
             enableTriplanarMapping = FindProperty("_EnableTriplanarMapping", props);
-            enableSSAA = FindProperty("_EnableSSAA", props);
-            mipmapBias = FindProperty("_MipmapBias", props);
             enableLocalSpaceTriplanarMapping = FindProperty("_EnableLocalSpaceTriplanarMapping", props);
             triplanarMappingBlendSharpness = FindProperty("_TriplanarMappingBlendSharpness", props);
             directionalLight = FindProperty("_DirectionalLight", props);
@@ -287,11 +291,13 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             environmentColorX = FindProperty("_EnvironmentColorX", props);
             environmentColorY = FindProperty("_EnvironmentColorY", props);
             environmentColorZ = FindProperty("_EnvironmentColorZ", props);
-            stencil = FindProperty("_Stencil", props);
-            stencilReference = FindProperty("_StencilReference", props);
+            stencil = FindProperty("_UseStencil", props);
+            stencilReference = FindProperty("_Stencil", props);
             stencilComparison = FindProperty(Styles.stencilComparisonName, props);
             stencilOperation = FindProperty(Styles.stencilOperationName, props);
             ignoreZScale = FindProperty("_IgnoreZScale", props);
+            useUIAlphaClipping = FindProperty("_UseUIAlphaClip", props);
+
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
@@ -419,7 +425,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
 
                 materialEditor.ShaderProperty(albedoAlphaMode, albedoAlphaMode.displayName);
 
-                if ((RenderingMode)renderingMode.floatValue == RenderingMode.Cutout ||
+                if ((RenderingMode)renderingMode.floatValue == RenderingMode.Cutout || 
                     (RenderingMode)renderingMode.floatValue == RenderingMode.Custom)
                 {
                     materialEditor.ShaderProperty(alphaCutoff, Styles.alphaCutoff.text);
@@ -462,7 +468,6 @@ namespace Microsoft.MixedReality.Toolkit.Editor
                 materialEditor.ShaderProperty(emissiveColor, Styles.emissiveColor, 2);
             }
 
-            GUI.enabled = !PropertyEnabled(enableSSAA);
             materialEditor.ShaderProperty(enableTriplanarMapping, Styles.enableTriplanarMapping);
 
             if (PropertyEnabled(enableTriplanarMapping))
@@ -470,17 +475,6 @@ namespace Microsoft.MixedReality.Toolkit.Editor
                 materialEditor.ShaderProperty(enableLocalSpaceTriplanarMapping, Styles.enableLocalSpaceTriplanarMapping, 2);
                 materialEditor.ShaderProperty(triplanarMappingBlendSharpness, Styles.triplanarMappingBlendSharpness, 2);
             }
-            GUI.enabled = true;
-
-            GUI.enabled = !PropertyEnabled(enableTriplanarMapping);
-            // SSAA implementation based off this article: https://medium.com/@bgolus/sharper-mipmapping-using-shader-based-supersampling-ed7aadb47bec
-            materialEditor.ShaderProperty(enableSSAA, Styles.enableSSAA);
-
-            if (PropertyEnabled(enableSSAA))
-            {
-                materialEditor.ShaderProperty(mipmapBias, Styles.mipmapBias, 2);
-            }
-            GUI.enabled = true;
 
             EditorGUILayout.Space();
             materialEditor.TextureScaleOffsetProperty(albedoMap);
@@ -605,7 +599,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
                 materialEditor.ShaderProperty(borderMinValue, Styles.borderMinValue, 2);
 
                 materialEditor.ShaderProperty(borderLightReplacesAlbedo, Styles.borderLightReplacesAlbedo, 2);
-
+                
                 if (PropertyEnabled(hoverLight) && PropertyEnabled(enableHoverColorOverride))
                 {
                     materialEditor.ShaderProperty(borderLightUsesHoverColor, Styles.borderLightUsesHoverColor, 2);
@@ -734,12 +728,14 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             {
                 materialEditor.ShaderProperty(ignoreZScale, Styles.ignoreZScale);
             }
+            
+            materialEditor.ShaderProperty(useUIAlphaClipping, Styles.useAlphaGUIClipping);
         }
 
         protected bool ScaleRequired()
         {
-            return PropertyEnabled(vertexExtrusion) ||
-                   PropertyEnabled(roundCorners) ||
+            return PropertyEnabled(vertexExtrusion) || 
+                   PropertyEnabled(roundCorners) || 
                    PropertyEnabled(borderLight) ||
                    (PropertyEnabled(enableTriplanarMapping) && PropertyEnabled(enableLocalSpaceTriplanarMapping));
         }

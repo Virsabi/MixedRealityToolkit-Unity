@@ -103,14 +103,19 @@ Shader "Mixed Reality Toolkit/Standard"
         [Enum(DepthWrite)] _ZWrite("Depth Write", Float) = 1                                         // "On"
         _ZOffsetFactor("Depth Offset Factor", Float) = 0                                             // "Zero"
         _ZOffsetUnits("Depth Offset Units", Float) = 0                                               // "Zero"
-        [Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorWriteMask("Color Write Mask", Float) = 15 // "All"
+        [Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorMask("Color Write Mask", Float) = 15 // "All"
         [Enum(UnityEngine.Rendering.CullMode)] _CullMode("Cull Mode", Float) = 2                     // "Back"
         _RenderQueueOverride("Render Queue Override", Range(-1.0, 5000)) = -1
+        [Toggle(_INSTANCED_COLOR)] _InstancedColor("Instanced Color", Float) = 0.0
         [Toggle(_IGNORE_Z_SCALE)] _IgnoreZScale("Ignore Z Scale", Float) = 0.0
-        [Toggle(_STENCIL)] _Stencil("Enable Stencil Testing", Float) = 0.0
-        _StencilReference("Stencil Reference", Range(0, 255)) = 0
-        [Enum(UnityEngine.Rendering.CompareFunction)]_StencilComparison("Stencil Comparison", Int) = 0
-        [Enum(UnityEngine.Rendering.StencilOp)]_StencilOperation("Stencil Operation", Int) = 0
+        [Toggle(_USE_STENCIL)] _UseStencil("Enable Stencil Testing", Float) = 0.0
+        _Stencil("Stencil Reference", Range(0, 255)) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)]_StencilComp("Stencil Comparison", Int) = 0
+        [Enum(UnityEngine.Rendering.StencilOp)]_StencilOp("Stencil Operation", Int) = 0
+        [Toggle(_USE_UI_ALPHA_CLIP)] _UseUIAlphaClip("Use UI Alpha Clip", Float) = 0.0
+        _StencilWriteMask ("Stencil Write Mask", Float) = 255
+        _StencilReadMask ("Stencil Read Mask", Float) = 255
+
     }
 
     SubShader
@@ -118,7 +123,7 @@ Shader "Mixed Reality Toolkit/Standard"
         Pass
         {
             Name "Main"
-            Tags{ "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
+            Tags{ "RenderType" = "Opaque" "LightMode" = "UniversalForward" }
             LOD 100
             Blend[_SrcBlend][_DstBlend]
             BlendOp[_BlendOp]
@@ -126,13 +131,15 @@ Shader "Mixed Reality Toolkit/Standard"
             ZWrite[_ZWrite]
             Cull[_CullMode]
             Offset[_ZOffsetFactor],[_ZOffsetUnits]
-            ColorMask[_ColorWriteMask]
+            ColorMask[_ColorMask]
 
             Stencil
             {
-                Ref[_StencilReference]
-                Comp[_StencilComparison]
-                Pass[_StencilOperation]
+                Ref[_Stencil]
+                Comp[_StencilComp]
+                Pass[_StencilOp]
+                ReadMask [_StencilReadMask]
+                WriteMask [_StencilWriteMask]
             }
 
             CGPROGRAM
@@ -140,6 +147,9 @@ Shader "Mixed Reality Toolkit/Standard"
             #pragma vertex vert
             #pragma fragment frag
 
+            #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
+            #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
+            
             #pragma multi_compile_instancing
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ _HOVER_LIGHT_MEDIUM _HOVER_LIGHT_HIGH
@@ -173,7 +183,7 @@ Shader "Mixed Reality Toolkit/Standard"
             #pragma shader_feature _PROXIMITY_LIGHT_SUBTRACTIVE
             #pragma shader_feature _PROXIMITY_LIGHT_TWO_SIDED
             #pragma shader_feature _ROUND_CORNERS
-            #pragma shader_feature _INDEPENDENT_CORNERS
+			#pragma shader_feature _INDEPENDENT_CORNERS
             #pragma shader_feature _BORDER_LIGHT
             #pragma shader_feature _BORDER_LIGHT_USES_HOVER_COLOR
             #pragma shader_feature _BORDER_LIGHT_REPLACES_ALBEDO
@@ -182,6 +192,7 @@ Shader "Mixed Reality Toolkit/Standard"
             #pragma shader_feature _IRIDESCENCE
             #pragma shader_feature _ENVIRONMENT_COLORING
             #pragma shader_feature _IGNORE_Z_SCALE
+            #pragma shader_feature _USE_UI_ALPHA_CLIP
 
             #define IF(a, b, c) lerp(b, c, step((fixed) (a), 0.0)); 
 
@@ -189,9 +200,14 @@ Shader "Mixed Reality Toolkit/Standard"
             #include "UnityStandardConfig.cginc"
             #include "UnityStandardUtils.cginc"
             #include "MixedRealityShaderUtils.cginc"
+            #include "UnityUI.cginc"
+            // This define will get commented in by the UpgradeShaderForLightweightRenderPipeline method.
+            #define _LIGHTWEIGHT_RENDER_PIPELINE
 
             // This define will get commented in by the UpgradeShaderForUniversalRenderPipeline method.
-            //#define _RENDER_PIPELINE
+            #define _RENDER_PIPELINE
+            
+            float4 _ClipRect;
 
 #if defined(_TRIPLANAR_MAPPING) || defined(_DIRECTIONAL_LIGHT) || defined(_SPHERICAL_HARMONICS) || defined(_REFLECTIONS) || defined(_RIM_LIGHT) || defined(_PROXIMITY_LIGHT) || defined(_ENVIRONMENT_COLORING)
             #define _NORMAL
@@ -1148,6 +1164,17 @@ Shader "Mixed Reality Toolkit/Standard"
 #if defined(_CLIPPING_PRIMITIVE) && !defined(_ALPHA_CLIP)
                 output *= saturate(primitiveDistance * (1.0f / _BlendedClippingWidth));
 #endif
+
+                #if defined(_WORLD_POSITION)
+
+                output.a *= UnityGet2DClipping(i.worldPosition.xy, _ClipRect);
+                #endif
+
+                #if defined(_USE_UI_ALPHA_CLIP)
+                // TODO: Encapsulate
+                clip(output.a - 0.001);
+                #endif
+
                 return output;
             }
 
@@ -1174,7 +1201,7 @@ Shader "Mixed Reality Toolkit/Standard"
             #include "UnityMetaPass.cginc"
 
             // This define will get commented in by the UpgradeShaderForUniversalRenderPipeline method.
-            //#define _RENDER_PIPELINE
+            #define _RENDER_PIPELINE
 
             struct v2f
             {
