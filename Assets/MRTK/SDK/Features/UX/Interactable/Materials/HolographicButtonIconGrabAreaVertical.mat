@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HolographicButtonIconGrabAreaVertical
-  m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6fb501e900c4f5848aa9d66482a5a087, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _NEAR_LIGHT_FADE _NEAR_PLANE_FADE _SPECULAR_HIGHLIGHTS
     _USECOLOR_ON _USEMAINTEX_ON
   m_LightmapFlags: 5
@@ -16,7 +16,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: Transparent
+    RenderType: Fade
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -100,6 +100,7 @@ Material:
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
     - _EnableProximityLightColorOverride: 0
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
@@ -111,6 +112,7 @@ Material:
     - _Glossiness: 0.5
     - _HoverLight: 0
     - _IgnoreZScale: 0
+    - _IndependentCorners: 0
     - _InnerGlow: 0
     - _InnerGlowPower: 4
     - _InstancedColor: 0
@@ -119,6 +121,7 @@ Material:
     - _IridescenceIntensity: 0.5
     - _IridescenceThreshold: 0.05
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 2
     - _NearLightFade: 1
     - _NearPlaneFade: 1
@@ -153,9 +156,11 @@ Material:
     - _UVSec: 0
     - _UseColor: 1
     - _UseMainTex: 1
+    - _UseStencil: 0
     - _UseUIAlphaClip: 0
     - _VertexColors: 0
     - _VertexExtrusion: 0
+    - _VertexExtrusionSmoothNormals: 0
     - _VertexExtrusionValue: 0
     - _ZOffsetFactor: 0
     - _ZOffsetUnits: 0
@@ -175,3 +180,4 @@ Material:
     - _ProximityLightMiddleColorOverride: {r: 0, g: 1, b: 0, a: 0.5}
     - _ProximityLightOuterColorOverride: {r: 0, g: 0, b: 1, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

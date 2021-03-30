@@ -8,10 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UIDarkGray
-  m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6fb501e900c4f5848aa9d66482a5a087, type: 3}
   m_ShaderKeywords: _BORDER_LIGHT _BORDER_LIGHT_USES_HOVER_COLOR _DIRECTIONAL_LIGHT
-    _DISABLE_ALBEDO_MAP _HOVER_LIGHT _SPECULARHIGHLIGHTS_ON _SPECULAR_HIGHLIGHTS _USEAMBIENT_ON
-    _USEDIFFUSE_ON _USEMAINCOLOR_ON
+    _DISABLE_ALBEDO_MAP _HOVER_LIGHT _SPECULARHIGHLIGHTS_ON _SPECULAR_HIGHLIGHTS
+    _USEAMBIENT_ON _USEDIFFUSE_ON _USEMAINCOLOR_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -121,6 +121,7 @@ Material:
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
     - _EnableProximityLightColorOverride: 0
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
@@ -136,6 +137,7 @@ Material:
     - _GlossyReflections: 1
     - _HoverLight: 1
     - _IgnoreZScale: 0
+    - _IndependentCorners: 0
     - _InnerGlow: 0
     - _InnerGlowPower: 4
     - _InstancedColor: 0
@@ -146,6 +148,7 @@ Material:
     - _MainTex_OFFSET: 0
     - _MainTex_SCALE: 0
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 0
     - _NearLightFade: 0
     - _NearPlaneFade: 0
@@ -217,6 +220,7 @@ Material:
     - _ProximityLightMiddleColorOverride: {r: 0, g: 1, b: 0, a: 0.5}
     - _ProximityLightOuterColorOverride: {r: 0, g: 0, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecularColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TextureScaleOffset: {r: 1, g: 1, b: 0, a: 0}

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PanContent
-  m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6fb501e900c4f5848aa9d66482a5a087, type: 3}
   m_ShaderKeywords: _HOVER_LIGHT _PROXIMITY_LIGHT _PROXIMITY_LIGHT_COLOR_OVERRIDE
     _PROXIMITY_LIGHT_SUBTRACTIVE _PROXIMITY_LIGHT_TWO_SIDED _SPECULAR_HIGHLIGHTS
   m_LightmapFlags: 4
@@ -101,6 +101,7 @@ Material:
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
     - _EnableProximityLightColorOverride: 1
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
@@ -114,6 +115,7 @@ Material:
     - _GlossyReflections: 1
     - _HoverLight: 1
     - _IgnoreZScale: 0
+    - _IndependentCorners: 0
     - _InnerGlow: 0
     - _InnerGlowPower: 4
     - _InstancedColor: 0
@@ -122,6 +124,7 @@ Material:
     - _IridescenceIntensity: 0.5
     - _IridescenceThreshold: 0.05
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 0
     - _NearLightFade: 0
     - _NearPlaneFade: 0
@@ -175,3 +178,4 @@ Material:
     - _ProximityLightOuterColorOverride: {r: 0.39215687, g: 0.39215687, b: 0.39215687,
         a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

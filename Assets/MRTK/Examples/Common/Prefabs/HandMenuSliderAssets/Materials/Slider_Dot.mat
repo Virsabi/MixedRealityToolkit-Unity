@@ -8,11 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slider_Dot
-  m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6fb501e900c4f5848aa9d66482a5a087, type: 3}
   m_ShaderKeywords: _DIRECTIONAL_LIGHT _DISABLE_ALBEDO_MAP _ENABLE_FADE_ _ENABLE_FADE__ON
-    _HOVER_LIGHT _NEG_X_EDGE__ON _NEG_Y_EDGE__ON _NEG_Z_EDGE__ON _POS_X_EDGE__ON _POS_Y_EDGE__ON
-    _POS_Z_EDGE__ON _RELATIVE_WIDTH_ _SMOOTH_ACTIVE_FACE__ON _SMOOTH_EDGES_ _SMOOTH_EDGES__ON
-    _SPECULAR_HIGHLIGHTS _TO_SRGB__ON
+    _HOVER_LIGHT _NEG_X_EDGE__ON _NEG_Y_EDGE__ON _NEG_Z_EDGE__ON _POS_X_EDGE__ON
+    _POS_Y_EDGE__ON _POS_Z_EDGE__ON _RELATIVE_WIDTH_ _SMOOTH_ACTIVE_FACE__ON _SMOOTH_EDGES_
+    _SMOOTH_EDGES__ON _SPECULAR_HIGHLIGHTS _TO_SRGB__ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -86,6 +86,7 @@ Material:
     - _AlbedoAssignedAtRuntime: 0
     - _Angle_: -45
     - _BlendOp: 0
+    - _BlendedClippingWidth: 1
     - _Blob_Enable_: 0
     - _Blob_Enable_2_: 0
     - _Blob_Fade_: 1
@@ -132,6 +133,8 @@ Material:
     - _EnableHoverColorOverride: 0
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
+    - _EnableProximityLightColorOverride: 0
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _Enable_Fade_: 1
     - _EnvironmentColorIntensity: 0.5
@@ -143,11 +146,14 @@ Material:
     - _Fade_Out_: 1
     - _Fade_Width_: 1.5
     - _Filter_Width_: 0
+    - _FluentLightIntensity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Highlight_Width_: 0
     - _HoverLight: 1
+    - _IgnoreZScale: 0
+    - _IndependentCorners: 0
     - _InnerGlow: 0
     - _InnerGlowPower: 4
     - _InstancedColor: 0
@@ -160,6 +166,7 @@ Material:
     - _Left_X1_: 0.95
     - _Line_Width_: 0.122
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 0
     - _NearLightFade: 0
     - _NearPlaneFade: 0
@@ -173,6 +180,7 @@ Material:
     - _Pos_Y_Edge_: 1
     - _Pos_Z_Edge_: 1
     - _ProximityLight: 0
+    - _ProximityLightSubtractive: 0
     - _ProximityLightTwoSided: 0
     - _Proximity_Far_Distance_: 0.16
     - _Proximity_Max_Intensity_: 0.45
@@ -218,6 +226,7 @@ Material:
     - _UVSec: 0
     - _VertexColors: 0
     - _VertexExtrusion: 0
+    - _VertexExtrusionSmoothNormals: 0
     - _VertexExtrusionValue: 0
     - _ZOffsetFactor: 0
     - _ZOffsetUnits: 0
@@ -252,5 +261,9 @@ Material:
     - _HoverColorOverride: {r: 1, g: 1, b: 1, a: 1}
     - _InnerGlowColor: {r: 1, g: 1, b: 1, a: 0.75}
     - _Line_Color_: {r: 0.92156863, g: 0.92156863, b: 0.92156863, a: 1}
+    - _ProximityLightCenterColorOverride: {r: 1, g: 0, b: 0, a: 0}
+    - _ProximityLightMiddleColorOverride: {r: 0, g: 1, b: 0, a: 0.5}
+    - _ProximityLightOuterColorOverride: {r: 0, g: 0, b: 1, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _Soft_Color_: {r: 0.259, g: 0.259, b: 0.259, a: 1}

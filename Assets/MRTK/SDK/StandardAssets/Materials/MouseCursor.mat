@@ -8,17 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MouseCursor
-  m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6fb501e900c4f5848aa9d66482a5a087, type: 3}
   m_ShaderKeywords: ALBEDO_OFF ALPHA_USAGE_OFF AMBIENTLIGHT_OFF CUBEMAP_OFF EMISSIVE_OFF
     ETC1_EXTERNAL_ALPHA FRESNEL_OFF LIGHTMAP_OFF LIGHTPROBES_OFF LIGHT_OFF NEARCLIP_OFF
-    NORMAL_OFF SHOWDEBUG_OFF TINT_OFF VERTCOLOR_OFF _ALPHATEST_ON _BORDER_LIGHT_USES_HOVER_COLOR
+    NORMAL_OFF SHOWDEBUG_OFF TINT_OFF VERTCOLOR_OFF _BORDER_LIGHT_USES_HOVER_COLOR
     _FOG_OFF _SPECULAR_HIGHLIGHTS
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 5000
+  m_CustomRenderQueue: 2000
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -110,6 +110,7 @@ Material:
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
     - _EnableProximityLightColorOverride: 0
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
@@ -122,6 +123,7 @@ Material:
     - _HoverLight: 0
     - _HoverLightOpaque: 0
     - _IgnoreZScale: 0
+    - _IndependentCorners: 0
     - _InnerGlow: 0
     - _InnerGlowPower: 4
     - _InstancedColor: 0
@@ -131,6 +133,7 @@ Material:
     - _IridescenceThreshold: 0.05
     - _LightProbeAmount: 1
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 5
     - _NearLightFade: 0
     - _NearPlaneFade: 0
@@ -200,6 +203,7 @@ Material:
     - _ProximityLightMiddleColorOverride: {r: 0, g: 1, b: 0, a: 0.5}
     - _ProximityLightOuterColorOverride: {r: 0, g: 0, b: 1, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _SpecPower: {r: 60, g: 0, b: 1, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _UplightColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}

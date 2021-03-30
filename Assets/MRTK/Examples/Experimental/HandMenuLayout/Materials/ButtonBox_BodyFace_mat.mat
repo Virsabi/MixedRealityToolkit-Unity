@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ButtonBox_BodyFace_mat
-  m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
-  m_ShaderKeywords: USE_GLOBAL_LEFT_INDEX_ON USE_GLOBAL_RIGHT_INDEX_ON _ALPHABLEND_ON
-    _BLOB_ENABLE_2__ON _BLOB_ENABLE__ON _DISABLE_ALBEDO_MAP _ENABLE_FADE__ON _INNER_GLOW
-    _NEAR_LIGHT_FADE _NEAR_PLANE_FADE _PROXIMITY_LIGHT _SMOOTH_ACTIVE_FACE__ON
+  m_Shader: {fileID: 4800000, guid: 6fb501e900c4f5848aa9d66482a5a087, type: 3}
+  m_ShaderKeywords: USE_GLOBAL_LEFT_INDEX_ON USE_GLOBAL_RIGHT_INDEX_ON _BLOB_ENABLE_2__ON
+    _BLOB_ENABLE__ON _DISABLE_ALBEDO_MAP _ENABLE_FADE__ON _INNER_GLOW _NEAR_LIGHT_FADE
+    _NEAR_PLANE_FADE _PROXIMITY_LIGHT _SMOOTH_ACTIVE_FACE__ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2000
   stringTagMap:
-    RenderType: Fade
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -55,6 +55,7 @@ Material:
     - _ClippingBox: 0
     - _ClippingPlane: 0
     - _ClippingSphere: 0
+    - _ColorMask: 15
     - _ColorWriteMask: 15
     - _CullMode: 2
     - _CustomMode: 2
@@ -68,6 +69,7 @@ Material:
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
     - _EnableProximityLightColorOverride: 0
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
@@ -78,6 +80,7 @@ Material:
     - _FluentLightIntensity: 1
     - _HoverLight: 0
     - _IgnoreZScale: 0
+    - _IndependentCorners: 0
     - _InnerGlow: 1
     - _InnerGlowPower: 2
     - _InstancedColor: 0
@@ -86,6 +89,7 @@ Material:
     - _IridescenceIntensity: 0.209
     - _IridescenceThreshold: 0.05
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 5
     - _NearLightFade: 1
     - _NearPlaneFade: 1
@@ -107,10 +111,16 @@ Material:
     - _SphericalHarmonics: 0
     - _SrcBlend: 1
     - _Stencil: 0
+    - _StencilComp: 0
     - _StencilComparison: 0
+    - _StencilOp: 0
     - _StencilOperation: 0
+    - _StencilReadMask: 255
     - _StencilReference: 0
+    - _StencilWriteMask: 255
     - _TriplanarMappingBlendSharpness: 4
+    - _UseStencil: 0
+    - _UseUIAlphaClip: 0
     - _VertexColors: 0
     - _VertexExtrusion: 0
     - _VertexExtrusionSmoothNormals: 0
@@ -134,3 +144,4 @@ Material:
         a: 1}
     - _ProximityLightOuterColorOverride: {r: 0.18823531, g: 0.3254902, b: 1, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
