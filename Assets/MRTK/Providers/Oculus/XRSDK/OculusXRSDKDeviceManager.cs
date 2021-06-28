@@ -241,6 +241,8 @@ The tool can be found under <i>Mixed Reality > Toolkit > Utilities > Oculus > In
                     GameObject.Destroy(prefabMainCamera);
                 }
                 cameraRig.transform.SetParent(MixedRealityPlayspace.Transform);
+                cameraRig.transform.localPosition = Vector3.zero;
+                cameraRig.transform.localRotation = Quaternion.identity;
             }
             else
             {
