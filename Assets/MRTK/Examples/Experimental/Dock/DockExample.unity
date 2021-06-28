@@ -234,7 +234,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 68f0ad9fadae8b3438ebd66cdba2b20f, type: 2}
+      objectReference: {fileID: 2100000, guid: 023ae91df29bc264eb10cffa03d69415, type: 2}
     - target: {fileID: 7988634196090784245, guid: 9215a7c858170d74fb2257375d5feaf1,
         type: 3}
       propertyPath: m_Layer
@@ -884,7 +884,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 68f0ad9fadae8b3438ebd66cdba2b20f, type: 2}
+      objectReference: {fileID: 2100000, guid: 023ae91df29bc264eb10cffa03d69415, type: 2}
     - target: {fileID: 7988634196090784245, guid: 9215a7c858170d74fb2257375d5feaf1,
         type: 3}
       propertyPath: m_Layer
@@ -1766,7 +1766,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 68f0ad9fadae8b3438ebd66cdba2b20f, type: 2}
+      objectReference: {fileID: 2100000, guid: 023ae91df29bc264eb10cffa03d69415, type: 2}
     - target: {fileID: 7988634196090784245, guid: 9215a7c858170d74fb2257375d5feaf1,
         type: 3}
       propertyPath: m_Layer
@@ -2131,7 +2131,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 68f0ad9fadae8b3438ebd66cdba2b20f, type: 2}
+      objectReference: {fileID: 2100000, guid: 023ae91df29bc264eb10cffa03d69415, type: 2}
     - target: {fileID: 7988634196090784245, guid: 9215a7c858170d74fb2257375d5feaf1,
         type: 3}
       propertyPath: m_Layer
@@ -2378,7 +2378,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 68f0ad9fadae8b3438ebd66cdba2b20f, type: 2}
+      objectReference: {fileID: 2100000, guid: 023ae91df29bc264eb10cffa03d69415, type: 2}
     - target: {fileID: 7988634196090784245, guid: 9215a7c858170d74fb2257375d5feaf1,
         type: 3}
       propertyPath: m_Layer
