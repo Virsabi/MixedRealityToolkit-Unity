@@ -53,7 +53,13 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// </summary>
         public override void ApplyConstraint(ref MixedRealityTransform transform)
         {
-            Quaternion rotation = transform.Rotation * Quaternion.Inverse(worldPoseOnManipulationStart.Rotation);
+            Quaternion rotation;
+
+            if (useLocalSpaceForConstraint) 
+                rotation = Quaternion.Inverse(worldPoseOnManipulationStart.Rotation) * transform.Rotation;
+            else 
+                rotation = transform.Rotation * Quaternion.Inverse(worldPoseOnManipulationStart.Rotation);
+                
             Vector3 eulers = rotation.eulerAngles;
             if (constraintOnRotation.HasFlag(AxisFlags.XAxis))
             {
@@ -68,9 +74,10 @@ namespace Microsoft.MixedReality.Toolkit.UI
                 eulers.z = 0;
             }
 
-            transform.Rotation = useLocalSpaceForConstraint
-                ? worldPoseOnManipulationStart.Rotation * Quaternion.Euler(eulers)
-                : Quaternion.Euler(eulers) * worldPoseOnManipulationStart.Rotation;
+            if (useLocalSpaceForConstraint)
+                transform.Rotation = worldPoseOnManipulationStart.Rotation * Quaternion.Euler(eulers);
+            else
+                transform.Rotation = Quaternion.Euler(eulers) * this.worldPoseOnManipulationStart.Rotation;
         }
 
         #endregion Public Methods
