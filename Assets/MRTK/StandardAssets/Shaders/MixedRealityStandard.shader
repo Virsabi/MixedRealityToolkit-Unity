@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 // NOTE: MRTK Shaders are versioned via the MRTK.Shaders.sentinel file.
-// When making changes to any shader's source file, the value in the sentinel _must_ be incremented.
+// When making modified to any shader's source file, the value in the sentinel _must_ be incremented.
 
 Shader "Mixed Reality Toolkit/Standard"
 {
@@ -103,14 +103,30 @@ Shader "Mixed Reality Toolkit/Standard"
         [Enum(DepthWrite)] _ZWrite("Depth Write", Float) = 1                                         // "On"
         _ZOffsetFactor("Depth Offset Factor", Float) = 0                                             // "Zero"
         _ZOffsetUnits("Depth Offset Units", Float) = 0                                               // "Zero"
-        [Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorWriteMask("Color Write Mask", Float) = 15 // "All"
+        
+        /* Virsabi modified start */
+        //[Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorWriteMask("Color Write Mask", Float) = 15 // "All"
+
         [Enum(UnityEngine.Rendering.CullMode)] _CullMode("Cull Mode", Float) = 2                     // "Back"
         _RenderQueueOverride("Render Queue Override", Range(-1.0, 5000)) = -1
         [Toggle(_IGNORE_Z_SCALE)] _IgnoreZScale("Ignore Z Scale", Float) = 0.0
-        [Toggle(_STENCIL)] _Stencil("Enable Stencil Testing", Float) = 0.0
-        _StencilReference("Stencil Reference", Range(0, 255)) = 0
-        [Enum(UnityEngine.Rendering.CompareFunction)]_StencilComparison("Stencil Comparison", Int) = 0
-        [Enum(UnityEngine.Rendering.StencilOp)]_StencilOperation("Stencil Operation", Int) = 0
+        
+        /* Virsabi modified */
+        //[Toggle(_STENCIL)] _Stencil("Enable Stencil Testing", Float) = 0.0
+        //_StencilReference("Stencil Reference", Range(0, 255)) = 0
+        //[Enum(UnityEngine.Rendering.CompareFunction)]_StencilComparison("Stencil Comparison", Int) = 0
+        //[Enum(UnityEngine.Rendering.StencilOp)]_StencilOperation("Stencil Operation", Int) = 
+
+        /* Virsabi modified */
+        [Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorMask("Color Write Mask", Float) = 15 // "All"
+        [Toggle(_INSTANCED_COLOR)] _InstancedColor("Instanced Color", Float) = 0.0
+        [Toggle(_USE_STENCIL)] _UseStencil("Enable Stencil Testing", Float) = 0.0
+        _Stencil("Stencil Reference", Range(0, 255)) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)]_StencilComp("Stencil Comparison", Int) = 0
+        [Enum(UnityEngine.Rendering.StencilOp)]_StencilOp("Stencil Operation", Int) = 0
+        [Toggle(_USE_UI_ALPHA_CLIP)] _UseUIAlphaClip("Use UI Alpha Clip", Float) = 0.0
+        _StencilWriteMask ("Stencil Write Mask", Float) = 255
+        _StencilReadMask ("Stencil Read Mask", Float) = 255
     }
 
     SubShader
@@ -118,7 +134,7 @@ Shader "Mixed Reality Toolkit/Standard"
         Pass
         {
             Name "Main"
-            Tags{ "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
+            Tags{ "RenderType" = "Opaque" "LightMode" = "UniversalForward" }
             LOD 100
             Blend[_SrcBlend][_DstBlend]
             BlendOp[_BlendOp]
@@ -126,19 +142,34 @@ Shader "Mixed Reality Toolkit/Standard"
             ZWrite[_ZWrite]
             Cull[_CullMode]
             Offset[_ZOffsetFactor],[_ZOffsetUnits]
-            ColorMask[_ColorWriteMask]
-
+            
+            /* Virsabi modified */
+            //ColorMask[_ColorWriteMask]
+            ColorMask[_ColorMask]
+            
             Stencil
             {
-                Ref[_StencilReference]
-                Comp[_StencilComparison]
-                Pass[_StencilOperation]
+                /* Virsabi modified */
+                //Ref[_StencilReference]
+                //Comp[_StencilComparison]
+                //Pass[_StencilOperation]
+                
+                Ref[_Stencil]
+                Comp[_StencilComp]
+                Pass[_StencilOp]
+                ReadMask [_StencilReadMask]
+                WriteMask [_StencilWriteMask]
             }
 
             CGPROGRAM
 
             #pragma vertex vert
             #pragma fragment frag
+
+            /* Virsabi modified */
+            #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
+            #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
+            #pragma shader_feature _USE_UI_ALPHA_CLIP
 
             #pragma multi_compile_instancing
             #pragma multi_compile _ LIGHTMAP_ON
@@ -193,8 +224,11 @@ Shader "Mixed Reality Toolkit/Standard"
             #include "MixedRealityShaderUtils.cginc"
 
             // This define will get commented in by the UpgradeShaderForUniversalRenderPipeline method.
-            //#define _RENDER_PIPELINE
+            #define _RENDER_PIPELINE
 
+            /* Virsabi modified */
+            float4 _ClipRect;
+            
 #if defined(_TRIPLANAR_MAPPING) || defined(_DIRECTIONAL_LIGHT) || defined(_SPHERICAL_HARMONICS) || defined(_REFLECTIONS) || defined(_RIM_LIGHT) || defined(_PROXIMITY_LIGHT) || defined(_ENVIRONMENT_COLORING)
             #define _NORMAL
 #else
@@ -1171,6 +1205,18 @@ Shader "Mixed Reality Toolkit/Standard"
 #if defined(_CLIPPING_PRIMITIVE) && !defined(_ALPHA_CLIP)
                 output *= saturate(primitiveDistance * (1.0f / _BlendedClippingWidth));
 #endif
+
+                /* Virsabi modified */
+                #if defined(_WORLD_POSITION)
+
+                output.a *= UnityGet2DClipping(i.worldPosition.xy, _ClipRect);
+                #endif
+
+                #if defined(_USE_UI_ALPHA_CLIP)
+                // TODO: Encapsulate
+                clip(output.a - 0.001);
+                #endif
+
                 return output;
             }
 
@@ -1197,7 +1243,7 @@ Shader "Mixed Reality Toolkit/Standard"
             #include "UnityMetaPass.cginc"
 
             // This define will get commented in by the UpgradeShaderForUniversalRenderPipeline method.
-            //#define _RENDER_PIPELINE
+            #define _RENDER_PIPELINE
 
             struct v2f
             {

@@ -51,7 +51,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             public static string depthWriteName = "_ZWrite";
             public static string depthOffsetFactorName = "_ZOffsetFactor";
             public static string depthOffsetUnitsName = "_ZOffsetUnits";
-            public static string colorWriteMaskName = "_ColorWriteMask";
+            public static string colorWriteMaskName = "_ColorMask";
 
             public static string cullModeName = "_CullMode";
             public static string renderQueueOverrideName = "_RenderQueueOverride";
