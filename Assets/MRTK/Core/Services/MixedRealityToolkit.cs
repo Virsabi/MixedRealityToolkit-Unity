@@ -572,8 +572,8 @@ namespace Microsoft.MixedReality.Toolkit
         {
             // There's lots of documented cases that if the camera doesn't start at 0,0,0, things break with the WMR SDK specifically.
             // We'll enforce that here, then tracking can update it to the appropriate position later.
-            CameraCache.Main.transform.position = Vector3.zero;
-            CameraCache.Main.transform.rotation = Quaternion.identity;
+            CameraCache.Main.transform.localPosition = Vector3.zero;
+            CameraCache.Main.transform.localRotation = Quaternion.identity;
 
             // This will create the playspace
             _ = MixedRealityPlayspace.Transform;
@@ -1564,7 +1564,9 @@ namespace Microsoft.MixedReality.Toolkit
                     for (int i = toolkitInstances.Count - 1; i >= 0; i--)
                     {
                         // Make sure MRTK is not parented under anything
+                        #if !SUPRESS_MRTK_PARENTED_WARNING
                         Debug.Assert(toolkitInstances[i].transform.parent == null, "MixedRealityToolkit instances should not be parented under any other GameObject.");
+                        #endif
                     }
                 };
             }
