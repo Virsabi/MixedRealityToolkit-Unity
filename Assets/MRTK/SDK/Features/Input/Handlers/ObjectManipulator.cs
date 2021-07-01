@@ -46,7 +46,8 @@ namespace Microsoft.MixedReality.Toolkit.UI
         public enum ReleaseBehaviorType
         {
             KeepVelocity = 1 << 0,
-            KeepAngularVelocity = 1 << 1
+            KeepAngularVelocity = 1 << 1,
+            RestoreKinematic = 1 << 2
         }
         #endregion Public Enums
 
@@ -164,7 +165,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
         [SerializeField]
         [EnumFlags]
         [Tooltip("Rigid body behavior of the dragged object when releasing it.")]
-        private ReleaseBehaviorType releaseBehavior = ReleaseBehaviorType.KeepVelocity | ReleaseBehaviorType.KeepAngularVelocity;
+        private ReleaseBehaviorType releaseBehavior = ReleaseBehaviorType.KeepVelocity | ReleaseBehaviorType.KeepAngularVelocity | ReleaseBehaviorType.RestoreKinematic;
 
         /// <summary>
         /// Rigid body behavior of the dragged object when releasing it.
@@ -302,6 +303,22 @@ namespace Microsoft.MixedReality.Toolkit.UI
             get => elasticsManager;
             set => elasticsManager = value;
         }
+
+
+        #region Virsabi
+
+        /// <summary>
+        /// Whether or not the kinematic state of the object is restored after object manipulation has ended. True by default.
+        /// </summary>
+        [SerializeField] private bool restoreKinematicState = true;
+
+        public bool RestoreKinematicState1
+        {
+            get => restoreKinematicState;
+            set => restoreKinematicState = value;
+        }
+
+        #endregion
 
         #endregion Serialized Fields
 
@@ -981,7 +998,10 @@ namespace Microsoft.MixedReality.Toolkit.UI
             if (rigidBody != null)
             {
                 rigidBody.useGravity = wasGravity;
-                rigidBody.isKinematic = wasKinematic;
+                
+                // Modified by Virsabi
+                if (releaseBehavior.HasFlag(ReleaseBehaviorType.RestoreKinematic))
+                    rigidBody.isKinematic = wasKinematic;
 
                 // Match the object's velocity to the controller for near interactions
                 // Otherwise keep the objects current velocity so that it's not dampened unnaturally
