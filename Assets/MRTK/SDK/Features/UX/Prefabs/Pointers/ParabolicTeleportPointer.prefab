@@ -115,6 +115,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -618,6 +619,9 @@ MonoBehaviour:
   rotationAmount: 90
   backStrafeActivationAngle: 45
   strafeAmount: 0.25
+  checkForFloorOnStrafe: 0
+  adjustHeightOnStrafe: 0
+  maxHeightChangeOnStrafe: 0.5
   upDirectionThreshold: 0.2
   LineColorHotSpot:
     serializedVersion: 2

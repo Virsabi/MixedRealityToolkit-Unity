@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -229,6 +231,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &85560913
@@ -412,7 +415,8 @@ PrefabInstance:
       propertyPath: contentScale
       value: 2.15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 124725993523235935, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
 --- !u!1001 &611771254
 PrefabInstance:
@@ -588,7 +592,8 @@ PrefabInstance:
       propertyPath: endPoint.position.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 124725993523235935, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
 --- !u!1 &717572603
 GameObject:
@@ -900,7 +905,8 @@ PrefabInstance:
       propertyPath: contentScale
       value: 2.15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 124725993523235935, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
 --- !u!4 &739718194 stripped
 Transform:
@@ -1060,6 +1066,7 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 922089762}
+              m_TargetAssemblyTypeName: 
               m_MethodName: TriggerClickedState
               m_Mode: 1
               m_Arguments:
@@ -1133,6 +1140,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1157,6 +1165,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &922089765
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1512,7 +1521,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7614231224962994370, guid: 18470d71939382448be2ecd06efa9662, type: 3}
+    - {fileID: 2423714866299932779, guid: 18470d71939382448be2ecd06efa9662, type: 3}
+    - {fileID: 7614231226555770157, guid: 18470d71939382448be2ecd06efa9662, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 18470d71939382448be2ecd06efa9662, type: 3}
 --- !u!4 &1130848215 stripped
 Transform:
@@ -1697,7 +1709,8 @@ PrefabInstance:
       propertyPath: contentScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 124725993523235935, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
 --- !u!4 &1193725264 stripped
 Transform:
@@ -1848,6 +1861,7 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 1279934718}
+              m_TargetAssemblyTypeName: 
               m_MethodName: SetToggleStates
               m_Mode: 1
               m_Arguments:
@@ -1900,6 +1914,7 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 1279934720}
+              m_TargetAssemblyTypeName: 
               m_MethodName: set_material
               m_Mode: 2
               m_Arguments:
@@ -1920,6 +1935,7 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 1279934720}
+              m_TargetAssemblyTypeName: 
               m_MethodName: set_material
               m_Mode: 2
               m_Arguments:
@@ -1959,6 +1975,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1983,6 +2000,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1279934721
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2181,7 +2199,8 @@ PrefabInstance:
       propertyPath: contentScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 124725993523235935, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247dc8aebe30ca2408e8293a883c75df, type: 3}
 --- !u!4 &1535796467 stripped
 Transform:
@@ -2346,6 +2365,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2370,6 +2390,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2082767158
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2608,7 +2629,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CompressableButton
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2565263484620580288, guid: 445915dc8698413468747c2fb539f935, type: 3}
+    - {fileID: 7750774866959689065, guid: 445915dc8698413468747c2fb539f935, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 445915dc8698413468747c2fb539f935, type: 3}
 --- !u!1001 &1458556030319426973
 PrefabInstance:
@@ -2687,7 +2710,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7372034970193038471, guid: 92195f9c5fa2a794fb2973255c7fd874, type: 3}
+    - {fileID: 3334730387172772910, guid: 92195f9c5fa2a794fb2973255c7fd874, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92195f9c5fa2a794fb2973255c7fd874, type: 3}
 --- !u!4 &3017390278537494183 stripped
 Transform:

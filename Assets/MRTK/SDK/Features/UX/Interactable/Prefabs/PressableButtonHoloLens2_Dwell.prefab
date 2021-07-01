@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1268310578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +98,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1268310579}
+        m_TargetAssemblyTypeName: 
         m_MethodName: DwellIntended
         m_Mode: 0
         m_Arguments:
@@ -110,6 +113,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1268310579}
+        m_TargetAssemblyTypeName: 
         m_MethodName: DwellStarted
         m_Mode: 0
         m_Arguments:
@@ -124,6 +128,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1268310579}
+        m_TargetAssemblyTypeName: 
         m_MethodName: DwellCompleted
         m_Mode: 0
         m_Arguments:
@@ -138,6 +143,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1268310579}
+        m_TargetAssemblyTypeName: 
         m_MethodName: DwellCanceled
         m_Mode: 0
         m_Arguments:
