@@ -288,11 +288,11 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     }
 
                     // If controller isn't an IMixedRealityHand or one of the required joints isn't available, check for position
-                    //if (Controller.IsPositionAvailable)
-                    //{
-                    //    result = Position;
-                    //    return true;
-                    //}
+                    if (Controller.IsPositionAvailable)
+                    {
+                        result = Position;
+                        return true;
+                    }
                 }
 
                 result = Vector3.zero;
