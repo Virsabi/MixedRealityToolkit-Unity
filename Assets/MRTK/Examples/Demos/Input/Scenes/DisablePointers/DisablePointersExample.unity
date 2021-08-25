@@ -1030,6 +1030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.3
   scaleMaximum: 5
   relativeToInitialState: 1
@@ -1065,6 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   constraintOnRotation: 5
   useLocalSpaceForConstraint: 0
 --- !u!114 &113165575
@@ -3087,6 +3089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.2
   scaleMaximum: 2
   relativeToInitialState: 1
@@ -3599,6 +3602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.2
   scaleMaximum: 2
   relativeToInitialState: 1
@@ -4015,6 +4019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.3
   scaleMaximum: 5
   relativeToInitialState: 1
@@ -4140,6 +4145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   constraintOnRotation: 5
   useLocalSpaceForConstraint: 0
 --- !u!114 &420565414
@@ -4568,6 +4574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.3
   scaleMaximum: 5
   relativeToInitialState: 1
@@ -9994,6 +10001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.3
   scaleMaximum: 5
   relativeToInitialState: 1
@@ -12945,6 +12953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.2
   scaleMaximum: 2
   relativeToInitialState: 1
@@ -12962,6 +12971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   constraintOnRotation: 5
   useLocalSpaceForConstraint: 0
 --- !u!114 &1528223541
@@ -15480,6 +15490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   constraintOnRotation: 5
   useLocalSpaceForConstraint: 0
 --- !u!65 &1847706698
@@ -16354,7 +16365,7 @@ Transform:
   m_GameObject: {fileID: 2031298106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.008, z: -1.3}
-  m_LocalScale: {x: 0.07138693, y: 0.11150841, z: 2.8991508}
+  m_LocalScale: {x: 0.03564778, y: 0.055682838, z: 1.4477199}
   m_Children: []
   m_Father: {fileID: 847188175}
   m_RootOrder: 0
