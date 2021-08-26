@@ -290,13 +290,33 @@ namespace Microsoft.MixedReality.Toolkit.Input
                     // If controller isn't an IMixedRealityHand or one of the required joints isn't available, check for position
                     if (Controller.IsPositionAvailable)
                     {
-                        result = Position;
+                        result = fallbackPos;
                         return true;
                     }
                 }
 
                 result = Vector3.zero;
                 return false;
+            }
+        }
+        
+        [SerializeField]
+        [Tooltip("The offset that the poke pointer has from the source pose when the index finger pose is not available.")]
+        protected float sourcePoseOffset = 0.075f;
+        /// <summary>
+        /// The offset that the poke pointer has from the source pose when the index finger pose is not available.
+        /// This value puts the pointer slightly in front of the source pose's origin, oriented according to the source pose's rotation
+        /// </summary>
+        public float SourcePoseOffset => sourcePoseOffset;
+        private Vector3 fallbackPos = Vector3.zero;
+        
+        public override void OnSourcePoseChanged(SourcePoseEventData<MixedRealityPose> eventData)
+        {
+            base.OnSourcePoseChanged(eventData);
+
+            if (SourcePoseDataUsable(eventData))
+            {
+                fallbackPos = transform.position + sourcePoseOffset * transform.forward;
             }
         }
 

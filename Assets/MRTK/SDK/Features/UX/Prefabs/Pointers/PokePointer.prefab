@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnSourceLost: 0
-  useSourcePoseData: 0
+  useSourcePoseData: 1
   useSourcePoseAsFallback: 1
   poseAction:
     id: 13
@@ -205,6 +205,7 @@ MonoBehaviour:
   defaultPointerExtent: 10
   sphereCastRadius: 0.15
   touchableDistance: 0.2
+  sourcePoseOffset: 0.075
   sceneQueryBufferSize: 64
   ignoreCollidersNotInFOV: 1
   pokeLayerMasks:
