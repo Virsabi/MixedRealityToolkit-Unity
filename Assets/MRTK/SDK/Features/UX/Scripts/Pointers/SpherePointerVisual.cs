@@ -83,6 +83,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             using (UpdatePerfMarker.Auto())
             {
                 TetherVisualsEnabled = false;
+
                 if (pointer.IsFocusLocked && pointer.IsTargetPositionLockedOnFocusLock && pointer.Result != null)
                 {
                     NearInteractionGrabbable grabbedObject = GetGrabbedObject();

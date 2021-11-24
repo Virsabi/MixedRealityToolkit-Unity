@@ -388,10 +388,11 @@ namespace Microsoft.MixedReality.Toolkit.UI
         #region Private Methods
         private void InitializeSliderThumb()
         {
+            Debug.Log("INITIALIZE SLIDER THUMB");
             var startToThumb = thumbRoot.transform.position - SliderStartPosition;
             var thumbProjectedOnTrack = SliderStartPosition + Vector3.Project(startToThumb, SliderTrackDirection);
             sliderThumbOffset = thumbRoot.transform.position - thumbProjectedOnTrack;
-
+    
             UpdateUI();
         }
 

@@ -17,7 +17,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: Transparent
+    RenderType: Fade
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -52,6 +52,7 @@ Material:
     - _BorderWidth: 0.02
     - _ClippingBorder: 0
     - _ClippingBorderWidth: 0.025
+    - _ColorMask: 15
     - _ColorWriteMask: 15
     - _CullMode: 0
     - _CustomMode: 2
@@ -65,6 +66,7 @@ Material:
     - _EnableLocalSpaceTriplanarMapping: 0
     - _EnableNormalMap: 0
     - _EnableProximityLightColorOverride: 0
+    - _EnableSSAA: 0
     - _EnableTriplanarMapping: 0
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
@@ -75,6 +77,7 @@ Material:
     - _FluentLightIntensity: 1
     - _HoverLight: 1
     - _IgnoreZScale: 1
+    - _IndependentCorners: 0
     - _InnerGlow: 0
     - _InnerGlowPower: 4
     - _InstancedColor: 0
@@ -83,6 +86,7 @@ Material:
     - _IridescenceIntensity: 0.5
     - _IridescenceThreshold: 0.05
     - _Metallic: 0
+    - _MipmapBias: -2
     - _Mode: 4
     - _NearLightFade: 1
     - _NearPlaneFade: 1
@@ -104,10 +108,16 @@ Material:
     - _SphericalHarmonics: 0
     - _SrcBlend: 1
     - _Stencil: 0
+    - _StencilComp: 0
     - _StencilComparison: 0
+    - _StencilOp: 0
     - _StencilOperation: 0
+    - _StencilReadMask: 255
     - _StencilReference: 0
+    - _StencilWriteMask: 255
     - _TriplanarMappingBlendSharpness: 4
+    - _UseStencil: 0
+    - _UseUIAlphaClip: 0
     - _VertexColors: 0
     - _VertexExtrusion: 0
     - _VertexExtrusionSmoothNormals: 0
@@ -129,3 +139,5 @@ Material:
     - _ProximityLightMiddleColorOverride: {r: 0, g: 1, b: 0, a: 0.5}
     - _ProximityLightOuterColorOverride: {r: 0, g: 0, b: 1, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RoundCornersRadius: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+  m_BuildTextureStacks: []

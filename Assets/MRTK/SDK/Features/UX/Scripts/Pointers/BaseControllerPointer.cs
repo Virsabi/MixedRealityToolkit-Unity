@@ -15,18 +15,15 @@ namespace Microsoft.MixedReality.Toolkit.Input
     [HelpURL("https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/input/pointers")]
     public abstract class BaseControllerPointer : ControllerPoseSynchronizer, IMixedRealityQueryablePointer
     {
-        [SerializeField]
-        private GameObject cursorPrefab = null;
+        [SerializeField] protected GameObject cursorPrefab = null;
 
-        [SerializeField]
-        private bool disableCursorOnStart = false;
+        [SerializeField] protected bool disableCursorOnStart = false;
 
         protected bool DisableCursorOnStart => disableCursorOnStart;
 
-        [SerializeField]
-        private bool setCursorVisibilityOnSourceDetected = false;
+        [SerializeField] protected bool setCursorVisibilityOnSourceDetected = false;
 
-        private GameObject cursorInstance = null;
+        protected GameObject cursorInstance = null;
 
         [SerializeField]
         [Tooltip("Source transform for raycast origin - leave null to use default transform")]
@@ -69,9 +66,9 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         protected bool IsHoldPressed = false;
 
-        private bool isCursorInstantiatedFromPrefab = false;
+        protected bool isCursorInstantiatedFromPrefab = false;
 
-        private static readonly ProfilerMarker SetCursorPerfMarker = new ProfilerMarker("[MRTK] BaseControllerPointer.SetCursor");
+        protected static readonly ProfilerMarker SetCursorPerfMarker = new ProfilerMarker("[MRTK] BaseControllerPointer.SetCursor");
 
         /// <summary>
         /// Set a new cursor for this <see cref="Microsoft.MixedReality.Toolkit.Input.IMixedRealityPointer"/>
@@ -134,7 +131,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
             }
         }
 
-        private void DestroyCursorInstance()
+        protected void DestroyCursorInstance()
         {
             if (cursorInstance != null)
             {

@@ -82,6 +82,9 @@ namespace Microsoft.MixedReality.Toolkit.UI.Editor
             if ((inputActionOptions == null && !TryGetInputActions(out inputActionOptions))
                 || (speechKeywordOptions == null && !TryGetSpeechKeywords(out speechKeywordOptions)))
             {
+                Debug.Log(inputActionOptions);
+                Debug.Log(speechKeywordOptions);
+
                 EditorGUILayout.HelpBox("Mixed Reality Toolkit is missing, configure it by invoking the 'Mixed Reality Toolkit > Add to Scene and Configure...' menu", MessageType.Error);
             }
 

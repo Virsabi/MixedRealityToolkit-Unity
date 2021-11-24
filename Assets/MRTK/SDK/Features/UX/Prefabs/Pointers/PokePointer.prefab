@@ -210,7 +210,7 @@ MonoBehaviour:
   ignoreCollidersNotInFOV: 1
   pokeLayerMasks:
   - serializedVersion: 2
-    m_Bits: 2148527923
+    m_Bits: 2148124979
   triggerInteraction: 0
 --- !u!1 &1733798232924774
 GameObject:
